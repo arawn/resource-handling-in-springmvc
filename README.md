@@ -90,3 +90,6 @@ frontend 모듈을 Gradle로 통합해서 사용하고 있습니다.
 ```
 -Dspring.profiles.active=dev -Ddemo.frontend.src.path=/resource-handling-in-springmvc/frontend/src
 ```
+
+![demo.DemoWebBootApplication 실행](https://raw.githubusercontent.com/arawn/resource-handling-in-springmvc/master/documents/backend-run-dev_01.png)
+![VM options](https://raw.githubusercontent.com/arawn/resource-handling-in-springmvc/master/documents/backend-run-dev_02.png)
