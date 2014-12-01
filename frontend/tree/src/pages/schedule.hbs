@@ -1,0 +1,28 @@
+---
+title: Schedule
+selectedMenuItem: schedule
+---
+<div class="inner cover">
+    <h1 class="cover-heading">Schedule</h1>
+</div>
+<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>시간</th>
+            <th>주제</th>
+            <th>발표자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${schedule}">
+            <td><time th:text="${item.begin}">15:30</time> ~ <time th:text="${item.end}">16:20</time></td>
+            <td th:text="${item.name}">Resource Handling in Spring MVC</td>
+            <td th:text="${item.participant}">박용권(Arawn Park)</td>
+        </tr>
+        <tr class="text-center" th:if="${#lists.isEmpty(schedule)}">
+            <td colspan="3">등록된 일정이 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

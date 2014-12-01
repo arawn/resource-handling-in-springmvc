@@ -1,0 +1,90 @@
+import org.springframework.core.env.StandardEnvironment
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.8.RELEASE")
+    }
+}
+
+configure(allprojects) { project ->
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    compileJava.options.encoding = 'UTF-8'
+
+    configurations {
+        all*.exclude module: 'commons-logging'
+    }
+
+    repositories {
+        maven { url "https://oss.sonatype.org/content/groups/public" }
+        maven { url "http://repo.springsource.org/libs-release" }
+        maven { url "http://repo.springsource.org/libs-milestone" }
+        maven { url "http://repo.springsource.org/plugins-release" }
+    }
+
+    idea.project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }    
+}
+
+project(':frontend') {
+    task npmInstall(type:Exec) {
+        logging.captureStandardOutput LogLevel.INFO
+        logging.captureStandardError LogLevel.LIFECYCLE
+
+        inputs.files "package.json", "bower.json"
+        outputs.files "node_modules", "src/libs"
+
+        commandLine "npm", "install"
+    }
+
+    task gruntBuild(type:Exec, dependsOn: [npmInstall]) {
+        logging.captureStandardOutput LogLevel.INFO
+        logging.captureStandardError LogLevel.LIFECYCLE
+
+        inputs.dir "src"
+        outputs.dir "dist"
+
+        commandLine "grunt", "build:release"
+    }
+
+    sourceSets.main.resources { srcDirs 'dist' }
+    jar {
+        from 'dist'
+        includeEmptyDirs = false
+    }
+    jar.dependsOn gruntBuild
+
+    clean {
+        delete ".tmp"
+        delete "dist"
+    }
+}
+
+project(':backend') {
+	apply plugin: 'spring-boot'
+    apply plugin: 'war'
+
+    dependencies {
+    	compile 'org.springframework.boot:spring-boot-starter-web',
+    			'org.springframework.boot:spring-boot-starter-thymeleaf'
+        
+        runtime project(':frontend')
+        runtime 'net.sourceforge.nekohtml:nekohtml:1.9.21'
+        runtime 'org.codehaus.groovy:groovy-all:2.2.1'
+    }
+
+    springBoot {
+        mainClass = 'demo.DemoWebBootApplication'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}

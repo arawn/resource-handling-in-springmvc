@@ -1,0 +1,5 @@
+apply plugin: 'war'
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.1.8.RELEASE'
+}

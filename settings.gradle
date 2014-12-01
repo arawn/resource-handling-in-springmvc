@@ -1,0 +1,5 @@
+include 'frontend', 'backend'
+include 'webjars-example'
+
+include 'spring40-resource-example'
+

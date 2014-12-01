@@ -1,0 +1,15 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "bootstrap": "3.3.0",
+    "jquery": "2.1.1",
+    "jquery-ui": "1.11.2",
+    "html5shiv": "3.7.2",
+    "respond": "1.4.2"
+  },
+  "overrides": {
+  }
+}

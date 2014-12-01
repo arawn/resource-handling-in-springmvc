@@ -1,0 +1,5 @@
+apply plugin: 'war'
+
+dependencies {
+    runtime 'org.webjars:bootstrap:3.3.1'
+}
