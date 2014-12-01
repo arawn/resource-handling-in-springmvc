@@ -2,6 +2,7 @@ Resource Handling in Spring MVC
 ================================
 
 [Adied 2014, 봄싹 세미나](https://adieu2014.github.io)에서 발표한 `Resource Handling in Spring MVC`의 데모 코드입니다.
+
 발표자료는 [slideshare](http://www.slideshare.net/arawnkr/resource-handling-in-spring-mvc)에 있습니다.
 
 사용된 도구 및 플랫폼
@@ -50,11 +51,13 @@ public class ResourceExampleWebMvcConfiguration extends WebMvcConfigurerAdapter 
 ### webjars-example
 
 서블릿 3.0 기반에서 [WebJars](http://www.webjars.org)를 사용하는 예제 코드입니다.
+
 별다른 부연 설명이 없기 떄문에 공식 사이트의 [문서](http://www.webjars.org/documentation)를 볼것을 권합니다.
 
 ### frontend
 
 정적 자원(html, css, javascript)을 제공하는 Client-side 모듈입니다.
+
 npm(node package manager), bower, grunt를 사용해서 CSS, JS를 최적화하고, 템블릿(HTML)을 생성합니다.
   
 ##### 빌드 방법
@@ -85,11 +88,13 @@ frontend 모듈을 Gradle로 통합해서 사용하고 있습니다.
 운영 환경에서는 frontend 모듈 배포 빌드 후 jar로 묶어 사용합니다.
 
 개발 환경은 IDE에서 `demo.DemoWebBootApplication` 클래스를 직접 실행하면 됩니다.
+
+![demo.DemoWebBootApplication 실행](https://raw.githubusercontent.com/arawn/resource-handling-in-springmvc/master/documents/backend-run-dev_01.png)
+
 실행시 VM options에 다음 값을 줘야합니다.
 
 ```
 -Dspring.profiles.active=dev -Ddemo.frontend.src.path=/resource-handling-in-springmvc/frontend/src
 ```
 
-![demo.DemoWebBootApplication 실행](https://raw.githubusercontent.com/arawn/resource-handling-in-springmvc/master/documents/backend-run-dev_01.png)
 ![VM options](https://raw.githubusercontent.com/arawn/resource-handling-in-springmvc/master/documents/backend-run-dev_02.png)
